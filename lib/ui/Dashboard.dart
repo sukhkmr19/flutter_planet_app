@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new ListView(
           children: <Widget>[
             new Image.asset(
-              'images/saturn.png',
+              'images/venus.png',
               height: 133.0,
               width: 180.0,
             ),
@@ -62,8 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   new TextField(
                     controller: _weightController,
-                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.deepPurpleAccent,
+                    keyboardType: TextInputType.numberWithOptions(),
                     decoration: new InputDecoration(
+                      fillColor: Colors.deepPurpleAccent,
                       labelText: 'your weight on earth',
                       hintText: 'In lbs',
                       icon: new Icon(Icons.person),
@@ -137,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return round(int.parse(weight) * multiplier, 2);
     } else {
       print('error!');
-      return int.parse('120') * 0.38;
+      return int.parse('0') * 0.38;
     }
   }
 }
