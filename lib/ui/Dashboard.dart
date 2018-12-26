@@ -19,21 +19,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onRadioButtonChanged(int value) {
     setState(() {
-      groupValues = value;
-      _planetName = planetName(value);
-      switch (value) {
-        case 0:
-          _finalWeight =
-              calculateFinalWeightOnPlanet(_weightController.text, 0.06);
-          break;
-        case 1:
-          _finalWeight =
-              calculateFinalWeightOnPlanet(_weightController.text, 0.38);
-          break;
-        case 2:
-          _finalWeight =
-              calculateFinalWeightOnPlanet(_weightController.text, 0.91);
-          break;
+      if (_weightController.text.isNotEmpty) {
+        groupValues = value;
+        _planetName = planetName(value);
+        switch (value) {
+          case 0:
+            _finalWeight =
+                calculateFinalWeightOnPlanet(_weightController.text, 0.06);
+            break;
+          case 1:
+            _finalWeight =
+                calculateFinalWeightOnPlanet(_weightController.text, 0.38);
+            break;
+          case 2:
+            _finalWeight =
+                calculateFinalWeightOnPlanet(_weightController.text, 0.91);
+            break;
+        }
+      } else {
+        groupValues = -1;
       }
     });
   }
@@ -110,7 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
             new Padding(padding: EdgeInsets.all(16.0)),
             new Center(
               child: new Text(
-                'Your weight on $_planetName is $_finalWeight lbs.',
+                _weightController.text.isEmpty
+                    ? 'Please enter your weight.'
+                    : 'Your weight on $_planetName is $_finalWeight lbs.',
                 style: new TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
