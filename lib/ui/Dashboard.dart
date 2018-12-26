@@ -16,12 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
   int groupValues = 0;
   double _finalWeight = 0.0;
   String _planetName = 'Pluto';
+  String _planetImage = 'images/pluto.png';
 
   void onRadioButtonChanged(int value) {
     setState(() {
       if (_weightController.text.isNotEmpty) {
         groupValues = value;
         _planetName = planetName(value);
+        _planetImage = planetImage(value);
         switch (value) {
           case 0:
             _finalWeight =
@@ -55,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new ListView(
           children: <Widget>[
             new Image.asset(
-              'images/venus.png',
+              _planetImage,
               height: 133.0,
               width: 180.0,
             ),
@@ -137,6 +139,17 @@ class _MyHomePageState extends State<MyHomePage> {
         return 'Mars';
       case 2:
         return 'Venus';
+    }
+  }
+
+  String planetImage(int value) {
+    switch (value) {
+      case 0:
+        return 'images/pluto.png';
+      case 1:
+        return 'images/mars.png';
+      case 2:
+        return 'images/venus.png';
     }
   }
 
